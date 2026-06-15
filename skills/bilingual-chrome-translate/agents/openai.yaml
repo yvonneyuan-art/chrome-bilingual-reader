@@ -1,4 +1,4 @@
 interface:
-  display_name: "Bilingual Chrome Translate"
+  display_name: "Chrome Bilingual Reader"
   short_description: "Show English beside Chrome-translated pages"
   default_prompt: "Use $bilingual-chrome-translate to set up or troubleshoot bilingual English/Chinese display for a Chrome-translated webpage."

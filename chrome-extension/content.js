@@ -2,7 +2,7 @@
   const MARKER_CLASS = "bct-original";
   const MARKER_TEXT_CLASS = "bct-original-text";
   const NO_TRANSLATE_CLASS = "notranslate";
-  const SCHEMA_VERSION = 10;
+  const SCHEMA_VERSION = 11;
   const STORAGE_PREFIX = "bct-originals:";
   const ID_ATTRIBUTE = "data-bct-id";
   const CAPTURE_SELECTOR = [
@@ -72,6 +72,12 @@
     "ol",
     "table",
     "pre"
+  ].join(",");
+  const X_TEXT_SELECTOR = [
+    "[data-testid='tweetText']",
+    "[data-testid='UserDescription']",
+    "[data-testid='card.layoutLarge.detail']",
+    "[data-testid='trend']"
   ].join(",");
 
   let originals = null;
@@ -197,14 +203,18 @@
 
   function collectCaptureElements() {
     const root = getContentRoot();
-    const candidates = Array.from(root.querySelectorAll(`${CAPTURE_SELECTOR}, ${GENERIC_TEXT_SELECTOR}`));
-    if (root.matches?.(`${CAPTURE_SELECTOR}, ${GENERIC_TEXT_SELECTOR}`)) {
+    const selector = isVirtualFeedPage()
+      ? X_TEXT_SELECTOR
+      : `${CAPTURE_SELECTOR}, ${GENERIC_TEXT_SELECTOR}`;
+    const candidates = Array.from(root.querySelectorAll(selector));
+    if (!isVirtualFeedPage() && root.matches?.(`${CAPTURE_SELECTOR}, ${GENERIC_TEXT_SELECTOR}`)) {
       candidates.unshift(root);
     }
 
     return candidates
       .filter((element) => {
         if (element.closest(EXCLUDED_ANCESTOR_SELECTOR)) return false;
+        if (isVirtualFeedPage() && !isAllowedVirtualFeedElement(element)) return false;
         if (!isInsideReadableArea(element)) return false;
         if (!isVisible(element)) return false;
         if (isCodeLikeElement(element)) return false;
@@ -219,6 +229,9 @@
   }
 
   function getContentRoot() {
+    if (isVirtualFeedPage()) {
+      return document.querySelector("main") || document.body;
+    }
     for (const selector of CONTENT_ROOT_SELECTOR.split(",")) {
       const root = document.querySelector(selector.trim());
       if (root && normalize(root.innerText || root.textContent).length > 80) {
@@ -289,6 +302,7 @@
   }
 
   function getRenderMode(element) {
+    if (isVirtualFeedPage()) return "virtual-feed-block";
     if (element.matches("td, th")) return "inside-cell";
     if (element.matches("li")) return "inside-list-item";
     if (element.matches(HEADING_SELECTOR) || looksLikeHeroHeading(element)) return "heading-subtitle";
@@ -297,6 +311,11 @@
 
   function renderMarker(target, marker, entry) {
     marker.classList.add(`bct-${entry.renderMode}`);
+
+    if (entry.renderMode === "virtual-feed-block") {
+      target.insertAdjacentElement("afterend", marker);
+      return;
+    }
 
     if (entry.renderMode === "inside-cell" || entry.renderMode === "heading-subtitle") {
       marker.classList.add("bct-inside-block");
@@ -325,6 +344,7 @@
   }
 
   function shouldRenderInsideBlock(element) {
+    if (isVirtualFeedPage()) return false;
     if (element.matches("p, figcaption, caption, summary, dt, dd")) return true;
     if (!isGenericTextElement(element)) return false;
     const parentStyle = window.getComputedStyle(element.parentElement || document.body);
@@ -367,6 +387,20 @@
 
   function isGenericTextElement(element) {
     return element.matches(GENERIC_TEXT_SELECTOR);
+  }
+
+  function isVirtualFeedPage() {
+    return location.hostname === "x.com" || location.hostname.endsWith(".x.com") ||
+      location.hostname === "twitter.com" || location.hostname.endsWith(".twitter.com");
+  }
+
+  function isAllowedVirtualFeedElement(element) {
+    if (!element.matches(X_TEXT_SELECTOR)) return false;
+    if (element.closest("[role='navigation'], [role='banner'], [role='search'], [data-testid='sidebarColumn']")) {
+      return false;
+    }
+    const text = getReadableText(element);
+    return text.length >= 8 && text.length <= 1000;
   }
 
   function isSafeGenericTextBlock(element, root) {

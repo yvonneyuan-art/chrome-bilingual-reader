@@ -3,7 +3,7 @@ name: bilingual-chrome-translate
 description: Build, install, use, or troubleshoot a Codex-assisted Chrome extension that preserves English originals before Chrome Translate runs and displays those originals beside the Chinese translated page. Use when the user wants bilingual English/Chinese reading in Chrome after using built-in translation, needs help loading the unpacked extension, wants to improve the extension behavior, or asks why original text cannot be recovered after translation.
 ---
 
-# Bilingual Chrome Translate
+# Chrome Bilingual Reader
 
 ## Overview
 

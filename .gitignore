@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies and build outputs
+node_modules/
+dist/
+build/
+
+# Packaged extension artifacts
+*.zip
+*.crx
+*.pem
+
+# Local editor and environment files
+.env
+.env.*
+.vscode/
+.idea/
+
+# Python cache files for local helper scripts
+__pycache__/
+*.py[cod]

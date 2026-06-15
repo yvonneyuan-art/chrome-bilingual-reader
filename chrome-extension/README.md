@@ -1,4 +1,4 @@
-# Bilingual Chrome Translate
+# Chrome Bilingual Reader
 
 This unpacked Chrome extension keeps English originals visible after Chrome translates a page into Chinese.
 

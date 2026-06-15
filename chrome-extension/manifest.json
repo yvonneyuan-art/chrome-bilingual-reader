@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Bilingual Chrome Translate",
-  "version": "0.2.1",
+  "name": "Chrome Bilingual Reader",
+  "version": "0.2.2",
   "description": "Keep English originals visible beside pages translated to Chinese by Chrome.",
   "permissions": ["activeTab", "storage"],
   "host_permissions": ["<all_urls>"],
@@ -12,7 +12,7 @@
     "128": "icons/icon-128.png"
   },
   "action": {
-    "default_title": "Bilingual Translate",
+    "default_title": "Chrome Bilingual Reader",
     "default_icon": {
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png",
