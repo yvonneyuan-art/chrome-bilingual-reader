@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bilingual Chrome Translate</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>中英对照</h1>
+        <p id="status">先在翻译前捕获英文原文。</p>
+      </header>
+
+      <button id="capture" type="button">1. 捕获英文原文</button>
+      <button id="show" type="button">2. 显示中英对照</button>
+      <button id="hide" type="button">隐藏英文</button>
+      <button id="clear" type="button">清除本页缓存</button>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

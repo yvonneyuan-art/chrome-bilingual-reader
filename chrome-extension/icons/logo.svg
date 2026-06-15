@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Bilingual Chrome Translate logo">
+  <defs>
+    <linearGradient id="page" x1="24" y1="14" x2="106" y2="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef4ff"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="23" y1="22" x2="105" y2="106" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#4c8df6"/>
+      <stop offset="1" stop-color="#1fb7a6"/>
+    </linearGradient>
+    <filter id="shadow" x="-16" y="-12" width="160" height="160" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#18324f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#f6f8fb"/>
+  <g filter="url(#shadow)">
+    <rect x="24" y="18" width="80" height="92" rx="18" fill="url(#page)" stroke="#d8e2f0" stroke-width="3"/>
+    <path d="M24 38c0-11.046 8.954-20 20-20h40c11.046 0 20 8.954 20 20v3H24v-3z" fill="url(#accent)"/>
+    <path d="M64 50v46" stroke="#d8e2f0" stroke-width="3" stroke-linecap="round"/>
+    <path d="M42 62h16M42 74h13M42 86h17" stroke="#4c8df6" stroke-width="5" stroke-linecap="round"/>
+    <path d="M74 62h13M70 74h19M73 86h15" stroke="#1fb7a6" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="64" cy="40" r="9" fill="#ffffff"/>
+    <path d="M57.5 40h13" stroke="#315274" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M64 33.5v13" stroke="#315274" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+</svg>

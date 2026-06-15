@@ -1,0 +1,50 @@
+.bct-original {
+  box-sizing: border-box;
+  display: block;
+  margin: 0.2em 0 0.7em;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #4b5668;
+  font-size: 0.9em;
+  line-height: 1.45;
+  opacity: 0.88;
+}
+
+.bct-original-text {
+  min-width: 0;
+  white-space: pre-line;
+}
+
+.bct-original.bct-after-block {
+  clear: both;
+}
+
+.bct-original.bct-inside-block {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.bct-original.bct-heading-subtitle {
+  margin: 0.22em 0 0;
+  color: #5d687a;
+  font-size: 0.28em;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.bct-original.bct-inside-list-item {
+  margin: 0.14em 0 0.18em;
+}
+
+.bct-original.bct-inside-cell {
+  margin: 0.35em 0 0;
+  font-size: 0.86em;
+}
+
+.bct-original.bct-inline {
+  display: inline-block;
+  margin: 0 0 0 0.35em;
+}
